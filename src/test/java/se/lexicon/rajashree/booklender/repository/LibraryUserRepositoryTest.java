@@ -1,6 +1,5 @@
 package se.lexicon.rajashree.booklender.repository;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @DataJpaTest
 public class LibraryUserRepositoryTest {
@@ -31,31 +33,29 @@ private LibraryUserRepository testObject;
     }
 
     @Test
-    public void given_email_findById() {
-        Optional<LibraryUser> libraryUser1 = testObject.findById(1);
-        String actualEmail = libraryUser1.get().getEmail();
-        Assertions.assertEquals("test1@gmail.com", actualEmail);
+    public void given_email_findByEmail_return_optional_present() {
+        LibraryUser expectedContent = new LibraryUser(1,LocalDate.parse("2019-07-31"),"TEST1","test1@gmail.com");
+        Optional<LibraryUser> result = testObject.findById(1);
+        assertEquals(expectedContent, result.get());
     }
 
-    @Test
+    //@Test
     public void given_FindAll() {
         List<LibraryUser> actualList = new ArrayList<LibraryUser>();
         Iterator<LibraryUser> listUser = testObject.findAll().iterator();
         while(listUser.hasNext()){
             actualList.add(listUser.next());
         }
-        Assertions.assertEquals(actualList.size(), 3);
+        assertEquals(actualList.size(), 3);
     }
-   // @Test
-    public void given_DeleteById() {
-        List<LibraryUser> actualList = new ArrayList<LibraryUser>();
+   @Test
+    public void test_Delete(){
         testObject.deleteById(1);
+        List<LibraryUser> actualList = new ArrayList<LibraryUser>();
         Iterator<LibraryUser> listUser = testObject.findAll().iterator();
         while(listUser.hasNext()){
             actualList.add(listUser.next());
         }
-        Assertions.assertEquals(actualList.size(), 2);
-
+        assertEquals(actualList.size(), 2);
     }
-
 }

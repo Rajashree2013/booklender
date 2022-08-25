@@ -38,6 +38,4 @@ public class Book {
         setReserved(false);
     }
 
-
-
 }

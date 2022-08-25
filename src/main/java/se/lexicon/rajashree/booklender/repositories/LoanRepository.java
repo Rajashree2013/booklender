@@ -14,4 +14,10 @@ public interface LoanRepository extends CrudRepository <Loan, Integer> {
    boolean findByTerminatedStaus(boolean val);*/
 
 
+
+
+
+
+
+
 }
