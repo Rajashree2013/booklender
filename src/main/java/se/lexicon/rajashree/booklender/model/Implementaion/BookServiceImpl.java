@@ -77,8 +77,6 @@ public class BookServiceImpl implements BookService {
         List listBook = new ArrayList();
         Book book = null;
         BookDto convertedToDto = null;
-
-
         if(available){
             listBook = bookRepository.findByAvailable(available);
             if(listBook != null && listBook.size() > 0){
@@ -91,8 +89,6 @@ public class BookServiceImpl implements BookService {
 
             }
         }
-
-
 
         return listOfBookDto;
     }
@@ -156,8 +152,8 @@ public class BookServiceImpl implements BookService {
     if (bookDto==null)throw new IllegalArgumentException("bookDto was null");
         if (bookDto.getBookId() == 0) throw new IllegalArgumentException("bookDto.Id must not be null");
             Book convertedToEntity  = modelMapper.map(bookDto, Book.class);
-            Book createdBook = bookRepository.save( convertedToEntity);
-            convertedToDto = modelMapper.map(createdBook, BookDto.class);
+            Book updateBook = bookRepository.save( convertedToEntity);
+            convertedToDto = modelMapper.map(updateBook, BookDto.class);
             return convertedToDto;
     }
 

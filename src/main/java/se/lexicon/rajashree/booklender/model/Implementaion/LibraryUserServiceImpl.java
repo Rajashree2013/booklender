@@ -90,8 +90,8 @@ public class LibraryUserServiceImpl implements LibraryUserService {
         if (libraryUserDto==null)throw new IllegalArgumentException("bookDto was null");
         if (libraryUserDto.getUserId()==0) throw new IllegalArgumentException("bookDto.Id must not be null");
         LibraryUser convertedToEntity  = modelMapper.map(libraryUserDto, LibraryUser.class);
-        LibraryUser createdLibraryUser= libraryUserRepository.save( convertedToEntity);
-        convertedToDto = modelMapper.map(createdLibraryUser, LibraryUserDto.class);
+        LibraryUser updateLibraryUser= libraryUserRepository.save( convertedToEntity);
+        convertedToDto = modelMapper.map(updateLibraryUser, LibraryUserDto.class);
         return convertedToDto;
 
     }

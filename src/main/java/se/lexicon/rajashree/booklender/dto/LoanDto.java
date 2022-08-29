@@ -14,7 +14,7 @@ import java.time.LocalDate;
 public class LoanDto {
 
 private long loanId;
-private LibraryUserDto lonetaker;
+private LibraryUserDto loantaker;
 private BookDto book;
 private LocalDate loanDate;
 private Boolean  terminated;
