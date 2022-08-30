@@ -18,7 +18,7 @@ public interface LoanRepository extends CrudRepository <Loan, Integer> {
    List<Loan> findByBookId(int bookId);
    @Modifying
    @Query("SELECT u FROM Loan u WHERE u.concluded = ? 1 ")
-   boolean findByTerminatedStaus(boolean val);
+   List<Loan> findByTerminatedStaus(boolean val);
 
 
 

@@ -71,7 +71,7 @@ public class LibraryUserServiceImpl implements LibraryUserService {
 
         try {
             if (libraryUserDto == null) throw new IllegalArgumentException("libraryUserDto was null");
-            if (libraryUserDto.getUserId() == 0) throw new IllegalArgumentException("BookDto.Id must be null");
+            if (libraryUserDto.getUserId() == 0) throw new IllegalArgumentException("LibraryUserDto must be null");
 
             LibraryUser convertedToEntity = modelMapper.map(libraryUserDto, LibraryUser.class);
             LibraryUser createdLibraryUser = libraryUserRepository.save(convertedToEntity);
@@ -87,8 +87,8 @@ public class LibraryUserServiceImpl implements LibraryUserService {
     public LibraryUserDto update(LibraryUserDto libraryUserDto) {
 
         LibraryUserDto convertedToDto = null;
-        if (libraryUserDto==null)throw new IllegalArgumentException("bookDto was null");
-        if (libraryUserDto.getUserId()==0) throw new IllegalArgumentException("bookDto.Id must not be null");
+        if (libraryUserDto==null)throw new IllegalArgumentException("libraryUserDto was null");
+        if (libraryUserDto.getUserId()==0) throw new IllegalArgumentException("libraryUserDto.Id must not be null");
         LibraryUser convertedToEntity  = modelMapper.map(libraryUserDto, LibraryUser.class);
         LibraryUser updateLibraryUser= libraryUserRepository.save( convertedToEntity);
         convertedToDto = modelMapper.map(updateLibraryUser, LibraryUserDto.class);

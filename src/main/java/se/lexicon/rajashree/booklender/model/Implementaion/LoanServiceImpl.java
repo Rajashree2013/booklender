@@ -72,13 +72,21 @@ public class LoanServiceImpl implements LoanService {
     }
 
     @Override
-    public List<LoanDto> findByTerminated() {
+    public List<LoanDto> findByTerminated(boolean status) {
+        LoanDto convertedToDto = null;
+        ArrayList<LoanDto> listOfLoanDto = new ArrayList();
+        Iterator<Loan> loanIterator= loanRepository.findByTerminatedStaus(status).iterator();
+        if(loanIterator != null){
+            if(loanIterator.hasNext()){
+                Loan loan = loanIterator.next();
+                convertedToDto = modelMapper.map(loan, LoanDto.class);
+                listOfLoanDto.add(convertedToDto);
+            }
+        }
 
-
-
-
-        return null;
+        return listOfLoanDto;
     }
+
 
     @Override
     public List<LoanDto> findAll() {
@@ -128,7 +136,7 @@ public class LoanServiceImpl implements LoanService {
     @Override
     public boolean delete(long loanId) {
 
-        if (loanId==0) throw new IllegalArgumentException("userId was Zero");
+        if (loanId==0) throw new IllegalArgumentException("loanId was Zero");
         loanRepository.deleteById(Long.valueOf(loanId).intValue());
         return true;
 
