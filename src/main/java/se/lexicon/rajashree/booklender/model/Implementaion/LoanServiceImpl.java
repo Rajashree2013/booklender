@@ -35,14 +35,12 @@ public class LoanServiceImpl implements LoanService {
             convertedToDto = modelMapper.map(loan ,LoanDto.class);
             return convertedToDto;
         }
-
     @Override
     public List<LoanDto> findByBookId(int bookId){
 
-
         LoanDto convertedToDto = null;
         ArrayList<LoanDto> listOfLoanDto = new ArrayList();
-        Iterator<Loan> loanIterator=loanRepository.findByBookId(bookId).iterator();
+        Iterator<Loan> loanIterator=loanRepository.findByBookBookId(bookId).iterator();
         if(loanIterator != null){
             if(loanIterator.hasNext()){
                 Loan loan = loanIterator.next();
@@ -59,23 +57,16 @@ public class LoanServiceImpl implements LoanService {
         LoanDto convertedToDto = null;
         ArrayList<LoanDto> listOfLoanDto = new ArrayList();
         if (userId==0) throw new IllegalArgumentException("loanId was Zero");
-        Iterator<Loan> loanIterator=loanRepository.findByBookId(userId).iterator();
-        if(loanIterator != null){
-            if(loanIterator.hasNext()){
-                Loan loan = loanIterator.next();
-                convertedToDto = modelMapper.map(loan, LoanDto.class);
-                listOfLoanDto.add(convertedToDto);
-            }
-        }
-
+        Loan loan = loanRepository.findByLoanTakerUserId(userId);
+        convertedToDto = modelMapper.map(loan, LoanDto.class);
+        listOfLoanDto.add(convertedToDto);
         return listOfLoanDto;
     }
-
     @Override
     public List<LoanDto> findByTerminated(boolean status) {
         LoanDto convertedToDto = null;
         ArrayList<LoanDto> listOfLoanDto = new ArrayList();
-        Iterator<Loan> loanIterator= loanRepository.findByTerminatedStaus(status).iterator();
+        Iterator<Loan> loanIterator= loanRepository.findByConcluded(status).iterator();
         if(loanIterator != null){
             if(loanIterator.hasNext()){
                 Loan loan = loanIterator.next();
@@ -86,7 +77,6 @@ public class LoanServiceImpl implements LoanService {
 
         return listOfLoanDto;
     }
-
 
     @Override
     public List<LoanDto> findAll() {
@@ -128,21 +118,14 @@ public class LoanServiceImpl implements LoanService {
     if (loanDto.getLoanId()==0)throw  new IllegalArgumentException("loanDtoId must be null");
         Loan convertedToEntity = modelMapper.map(loanDto, Loan.class);
         Loan updateLoan = loanRepository.save(convertedToEntity);
-
         convertedToDto = modelMapper.map(updateLoan, LoanDto.class);
         return convertedToDto;
 
     }
     @Override
     public boolean delete(long loanId) {
-
         if (loanId==0) throw new IllegalArgumentException("loanId was Zero");
         loanRepository.deleteById(Long.valueOf(loanId).intValue());
         return true;
-
-
-
-
-
     }
 }

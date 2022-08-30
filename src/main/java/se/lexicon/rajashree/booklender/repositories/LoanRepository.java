@@ -12,13 +12,11 @@ import java.util.Optional;
 
 public interface LoanRepository extends CrudRepository <Loan, Integer> {
 
-   Optional<Loan> findByUserId(int userId);
-   @Modifying
-   @Query("SELECT u FROM Loan u WHERE u.book = ? 1 ")
-   List<Loan> findByBookId(int bookId);
-   @Modifying
-   @Query("SELECT u FROM Loan u WHERE u.concluded = ? 1 ")
-   List<Loan> findByTerminatedStaus(boolean val);
+   Loan findByLoanTakerUserId(int userId);
+   //Find by bookId
+   List<Loan> findByBookBookId(int bookId);
+
+   List<Loan> findByConcluded(boolean val);
 
 
 

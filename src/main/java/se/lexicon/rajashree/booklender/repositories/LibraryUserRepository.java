@@ -8,10 +8,5 @@ import se.lexicon.rajashree.booklender.model.LibraryUser;
 import java.util.Optional;
 
 public interface LibraryUserRepository extends CrudRepository<LibraryUser, Integer> {
-    @Modifying
-    @Query("SELECT u FROM LibraryUser u WHERE u.email = ?1 ")
     Optional<LibraryUser> findByEmail(String email);
-
-
-
 }
