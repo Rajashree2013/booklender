@@ -2,6 +2,7 @@ package se.lexicon.rajashree.booklender.model.Implementaion;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import se.lexicon.rajashree.booklender.dto.BookDto;
 import se.lexicon.rajashree.booklender.dto.LibraryUserDto;
 import se.lexicon.rajashree.booklender.dto.LoanDto;
@@ -17,6 +18,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class LoanServiceImpl implements LoanService {
 
     LoanRepository loanRepository;

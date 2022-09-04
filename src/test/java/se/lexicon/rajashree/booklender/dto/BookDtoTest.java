@@ -8,8 +8,6 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class BookDtoTest {
-
-
     @Test
     public void test_BookDto_Setter() {
         int expectedMaxLoanDays = 30;
@@ -25,4 +23,5 @@ public class BookDtoTest {
         assertTrue(testBook.isAvailable());
         assertFalse(testBook.isReserved());
     }
+
 }

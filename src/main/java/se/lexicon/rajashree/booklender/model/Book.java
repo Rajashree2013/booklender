@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 @NoArgsConstructor
 @EqualsAndHashCode
 @ToString
+@Builder
 
 @Entity
 public class Book {

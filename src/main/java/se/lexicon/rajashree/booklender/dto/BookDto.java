@@ -24,6 +24,10 @@ public class BookDto {
     private BigDecimal finePerDay;
 
 
-
-
+    public BookDto(String title, String description, int maxLoanDays, BigDecimal finePerDay) {
+        this.title = title;
+        this.description = description;
+        this.maxLoanDays = maxLoanDays;
+        this.finePerDay = finePerDay;
+    }
 }
