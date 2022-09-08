@@ -23,7 +23,7 @@ public class LibraryUserServiceImpl implements LibraryUserService {
     LibraryUserRepository libraryUserRepository;
     ModelMapper modelMapper;
     @Autowired
-    public LibraryUserServiceImpl(LibraryUserRepository libraryUserRepository, ModelMapper modelMapper) {
+    public LibraryUserServiceImpl(LibraryUserRepository libraryUserRepository,ModelMapper modelMapper) {
         this.libraryUserRepository = libraryUserRepository;
         this.modelMapper = modelMapper;
 
